@@ -10,21 +10,25 @@ function Init() {
 	addRenderer();
 	addCamera();
 	addControls();	
+	
+	loadObject('plane', plane, addToScene);
+
 	addLight();
 	detectOrientationChange();
 	animate();
+
 }
 
 function addRenderer() {
 	container = document.getElementById( 'webGL' );	
 	renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-	renderer.setClearColor( 0x000000, 0);
+	renderer.setClearColor( 0xffffff, 0);
 	renderer.setSize( width, height ); 
 	container.appendChild( renderer.domElement );
 }
 
 function addLight () {
-	var ambientLight = new THREE.AmbientLight( 0x999999 );
+	var ambientLight = new THREE.AmbientLight( 0xffffff );
 	scene.add( ambientLight );
 }
 
@@ -36,7 +40,8 @@ function addCamera () {
 		{}
 
 	camera = new THREE.PerspectiveCamera( fov, width / height, camNear, camFar ); 
-	camera.position.set(0, 10, 15);
+	camera.position.set(40, 105, 260);
+	camera.lookAt(new THREE.Vector3(0,35,0));
 	scene.add( camera );
 	new THREEx.WindowResize(renderer, camera);
 }
