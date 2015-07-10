@@ -18,7 +18,7 @@ function Init() {
 function addRenderer() {
 	container = document.getElementById( 'webGL' );	
 	renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-	renderer.setClearColor( 0x000000);
+	renderer.setClearColor( 0x000000, 0);
 	renderer.setSize( width, height ); 
 	container.appendChild( renderer.domElement );
 }
