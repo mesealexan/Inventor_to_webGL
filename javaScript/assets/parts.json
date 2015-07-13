@@ -1,0 +1,29 @@
+{
+  "parts" : [
+    {
+      "name": "Part_00"
+    },
+    {
+      "name": "Part_01"
+    },
+    {
+      "name": "Part_02"
+    },
+    {
+      "name": "Part_03"
+    },
+    {
+      "name": "Part_04"
+    },
+    {
+      "name": "Part_05"
+    },
+    {
+      "name": "Part_06"
+    },
+    {
+      "name": "Part_07"
+    }
+    ],
+  "scale" : 1
+}

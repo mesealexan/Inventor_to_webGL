@@ -2,6 +2,9 @@ var background = document.getElementById("background");
 var width = window.innerWidth, height = window.innerHeight;
 aspectRatio = width / height;
 
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+
 Init();
 
 function Init() {
@@ -10,9 +13,10 @@ function Init() {
 	addRenderer();
 	addCamera();
 	addControls();	
-	
-	loadObject('plane', plane, addToScene);
-
+	makeTextureCube();
+	loadObjects(thumb);
+	collision_group = new THREE.Object3D();
+	scene.add(collision_group)
 	addLight();
 	detectOrientationChange();
 	animate();
@@ -23,6 +27,8 @@ function addRenderer() {
 	container = document.getElementById( 'webGL' );	
 	renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 	renderer.setClearColor( 0xffffff, 0);
+	renderer.shadowMapEnabled = true;
+	renderer.shadowMapType = THREE.PCFSoftShadowMap;
 	renderer.setSize( width, height ); 
 	container.appendChild( renderer.domElement );
 }
@@ -30,6 +36,20 @@ function addRenderer() {
 function addLight () {
 	var ambientLight = new THREE.AmbientLight( 0xffffff );
 	scene.add( ambientLight );
+
+	var spotLight = new THREE.SpotLight( 0xffffff );
+	spotLight.position.set( -350, 1611, 300 );
+	spotLight.intensity = 0.2;
+
+	spotLight.castShadow = true;
+	spotLight.angle = Math.PI/2;
+	spotLight.shadowMapWidth = 2048;
+	spotLight.shadowMapHeight = 2048;
+	spotLight.shadowCameraNear = 500;
+	spotLight.shadowCameraFar = 4000;
+	spotLight.shadowCameraFov = 10;
+
+	scene.add( spotLight );
 }
 
 function addCamera () {	
@@ -56,8 +76,11 @@ function detectOrientationChange () {
 }
 
 function addTestCube () {
-	var geometry = new THREE.BoxGeometry( 5, 5, 5 );
+	var geometry = new THREE.BoxGeometry( 25, 25, 25 );
 	var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
 	var cube = new THREE.Mesh( geometry, material );
+	cube.position.set(0,50,0);
+	cube.castShadow = true;
+	cube.receiveShadow = true;
 	scene.add( cube );
 }
