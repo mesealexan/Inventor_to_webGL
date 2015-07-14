@@ -1,6 +1,12 @@
 function addControls() {	
     controls = new THREE.OrbitControls( camera, renderer.domElement );
 
+    controls.noPan = true;
+    controls.maxDistance = 500;
+    controls.minDistance = 100;
+    controls.maxPolarAngle = 1.48;
+    controls.target.set(0,35,0);
+    camera.lookAt(controls.target)
     hammer = new Hammer(container);
     //pan in all directions
     hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });

@@ -20,9 +20,10 @@ function Init() {
 	makeTextureCube();
 	loadObjects(thumb);
 	placeText(thumb);
+	addLight();
 	detectOrientationChange();
 	animate();
-	addLight();
+	
 }
 
 function addRenderer() {
@@ -30,8 +31,9 @@ function addRenderer() {
 	renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 	renderer.setClearColor( 0xffffff, 0);
 	renderer.shadowMapEnabled = true;
-	renderer.shadowMapType = THREE.PCFSoftShadowMap;
+	renderer.shadowMapType = THREE.PCFShadowMap;
 	renderer.setSize( width, height ); 
+	renderer.shadowMapCullFace = THREE.CullFaceBack;
 	container.appendChild( renderer.domElement );
 }
 
@@ -40,17 +42,17 @@ function addLight () {
 	scene.add( ambientLight );
 
 	var spotLight = new THREE.SpotLight( 0xffffff );
-	spotLight.position.set( 190,160,170 );
+	spotLight.position.set( -90,420,170 );
 	spotLight.intensity = 0.2;
 
 	spotLight.castShadow = true;
 	spotLight.angle = Math.PI/2;
-	spotLight.shadowMapWidth = 2048;
-	spotLight.shadowMapHeight = 2048;
-	spotLight.shadowCameraNear = 500;
-	spotLight.shadowCameraFar = 4000;
-	spotLight.shadowCameraFov = 10;
-
+	spotLight.shadowMapWidth = 1024;
+	spotLight.shadowMapHeight = 1024;
+	spotLight.shadowCameraNear = 100;
+	spotLight.shadowCameraFar = 600;
+	spotLight.shadowCameraFov = 35;
+	spotLight.shadowBias = -0.001;
 	scene.add( spotLight );
 
 	var spotLight2 = new THREE.SpotLight( 0xffffff );
@@ -69,7 +71,7 @@ function addCamera () {
 
 	camera = new THREE.PerspectiveCamera( fov, width / height, camNear, camFar ); 
 	camera.position.set(40, 105, 260);
-	camera.lookAt(new THREE.Vector3(0,35,0));
+	camera.lookAt(new THREE.Vector3(0,45,0));
 	scene.add( camera );
 	new THREEx.WindowResize(renderer, camera);
 }

@@ -5,11 +5,6 @@ function loadObject (name, variable, callback, castShadow, receiveShadow, tileMa
 
 	loader.load( "assets/" + name + ".js", function( geometry, materials ) {
 		materials[0] = setMaterials( materialName, tileMap);
-		/*
-		materialsArray = materials;
-		for (var i = materialsArray.length - 1; i >= 0; i--) {
-			materialsArray[i] = setMaterials(materialsArray[i].name, tileMap);
-		};*/
 		geometry.computeFaceNormals();
 		geometry.computeVertexNormals();
 
@@ -17,16 +12,14 @@ function loadObject (name, variable, callback, castShadow, receiveShadow, tileMa
  	 		mesh = new THREE.Mesh( geometry, faceMaterial );
  	 		mesh.name = name;
 
-
-
 		if(castShadow) mesh.castShadow = castShadow;
 		if(receiveShadow) mesh.receiveShadow = receiveShadow;	
-		if(name.startsWith('Part_')){mesh.UVRepeat = tileMap;collision_group.add(mesh)}
-			else {scene.add(mesh)}
+		
  	});
 
 loader.onLoadComplete = function(){
-
+	if(name.startsWith('Part_')){mesh.UVRepeat = tileMap;collision_group.add(mesh)}
+		else {scene.add(mesh)}
 	};
 }
 
@@ -34,16 +27,18 @@ function addToScene (obj, parent) {
 	if(parent) parent.add(obj); else scene.add(obj);
  }
 
- function loadObjects(JSON_List){
+function loadObjects(JSON_List){
  	for(var i=0,l=JSON_List.parts.length;i<l;i++){
  		var mesh;
- 		loadObject(JSON_List.parts[i].name,mesh, addToScene, true, false, JSON_List.parts[i].uv, JSON_List.parts[i].material);
+ 		loadObject(JSON_List.parts[i].name,mesh, addToScene, true, true, JSON_List.parts[i].uv, JSON_List.parts[i].material);
  	}
- 	loadObject('plane',mesh, addToScene, false, true, 1, 'Plane');
- }
+ 	loadObject('plane',mesh, addToScene, true, true, 1, 'Plane');
+}
 
- function placeText(JSON_List){
- 	var dummy_text = new THREE.Object3D();
+function placeText(JSON_List){
+ 	if(dummy_text) scene.remove(dummy_text);
+
+ 		dummy_text = new THREE.Object3D();
  	var size = JSON_List.text.size, height = 0.3, curveSegments = 10;
 
  	var first_name = new THREE.TextGeometry( JSON_List.text.first_name, {
@@ -88,4 +83,14 @@ function addToScene (obj, parent) {
 
 	dummy_text.position.set(JSON_List.text.position.x,JSON_List.text.position.z,-JSON_List.text.position.y)
 	scene.add(dummy_text);
- }
+}
+
+function changeText(){
+ 	var form = document.getElementById('info')
+ 	thumb.text.first_name = form.children[0][0].value;
+ 	thumb.text.last_name = form.children[0][1].value;
+ 	thumb.text.birth = form.children[1][0].value;
+ 	thumb.text.death = form.children[1][1].value;
+
+	placeText(thumb)
+}

@@ -4,3 +4,4 @@ var textureCube;
 var plane = {}, test = {};
 var thumb;
 var collision_group;
+var dummy_text;

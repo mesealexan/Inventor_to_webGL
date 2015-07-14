@@ -46,7 +46,7 @@ body{
   	width: 150px;
   	height: 200px;
   	z-index: 10;	
-	overflow: auto;
+	overflow: hidden;
 }
 #materials{
 	position:relative;
@@ -61,4 +61,10 @@ body{
 .image{
 	width: 100px;
 	height: 100px;
+}
+.submitButton{
+	position:relative;
+	left: 0px;
+	top: 10px;
+	width: 140px;
 }

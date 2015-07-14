@@ -29,7 +29,6 @@ function setMaterials(materialName, repeat){
 	    var texture = THREE.ImageUtils.loadTexture("assets/materials/" + materialName + ".jpg");
 			texture.wrapS = THREE.RepeatWrapping;
 			texture.wrapT = THREE.RepeatWrapping;
-			console.log(repeat)
 			if(repeat) texture.repeat.set( repeat, repeat );
 	    	material =  new THREE.MeshPhongMaterial({
 		    	color: new THREE.Color("rgb(125,125,125)"),

@@ -13,19 +13,20 @@
 	<div id="menu">
 		<div id="info">
 			<form>
-			First name:<br>
-			<input type="text" name="firstname">
-			<br>
-			Last name:<br>
-			<input type="text" name="lastname">
+				First name:<br>
+				<input type="text" name="firstname" value="John">
+				<br>
+				Last name:<br>
+				<input type="text" name="lastname" value="Doe">
+				</form>
+				<form>
+				Birth:<br>
+				<input type="text" name="firstname" value="14.05.1921">
+				<br>
+				Death:<br>
+				<input type="text" name="lastname" value="14.05.1991">
 			</form>
-			<form>
-			Birth:<br>
-			<input type="text" name="firstname">
-			<br>
-			Death:<br>
-			<input type="text" name="lastname">
-			</form>
+			<button class="submitButton" onclick="changeText()">Submit</button>
 		</div>
 		<div id="materials" draggable="true">
 			<img src="img/aura.png" alt="aura" class="image">
@@ -57,7 +58,7 @@
 	<script src="libs/threex.keyboardstate.js"></script>
 	<script src="libs/hammer.min.js"></script>
 	<script src="libs/helvetiker_regular.typeface.js"></script>
-	
+
 	<!-- Custom Scripts --> 
 	<script src="js/degradation.js"></script>
 	<script src="js/materials.js"></script>
