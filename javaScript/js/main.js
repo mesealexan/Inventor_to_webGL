@@ -12,15 +12,17 @@ function Init() {
 	scene = new THREE.Scene();
 	addRenderer();
 	addCamera();
-	addControls();	
+	addControls();
+
+	collision_group = new THREE.Object3D();
+		scene.add(collision_group);
+
 	makeTextureCube();
 	loadObjects(thumb);
-	collision_group = new THREE.Object3D();
-	scene.add(collision_group)
-	addLight();
+	placeText(thumb);
 	detectOrientationChange();
 	animate();
-
+	addLight();
 }
 
 function addRenderer() {
@@ -38,7 +40,7 @@ function addLight () {
 	scene.add( ambientLight );
 
 	var spotLight = new THREE.SpotLight( 0xffffff );
-	spotLight.position.set( -350, 1611, 300 );
+	spotLight.position.set( 190,160,170 );
 	spotLight.intensity = 0.2;
 
 	spotLight.castShadow = true;
@@ -50,6 +52,12 @@ function addLight () {
 	spotLight.shadowCameraFov = 10;
 
 	scene.add( spotLight );
+
+	var spotLight2 = new THREE.SpotLight( 0xffffff );
+	spotLight2.position.set( -350, 1611, 300 );
+	spotLight2.intensity = 0.2;
+
+	scene.add( spotLight2 );
 }
 
 function addCamera () {	

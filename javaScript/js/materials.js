@@ -1,4 +1,4 @@
-function setMaterials(materialName){
+function setMaterials(materialName, repeat){
 	var material;
 	switch(materialName){ 
 		case 'Plane':
@@ -18,15 +18,27 @@ function setMaterials(materialName){
 		    	shininess: 11
 		    })
 	        break;
+	    case 'Text':
+		    material = new THREE.MeshPhongMaterial({
+		    	color: new THREE.Color("rgb(16,16,16)"),
+		    	ambient: new THREE.Color("rgb(16,16,16)"),
+		    	specular: new THREE.Color("rgb(255,255,255)")
+		    })
+	        break;
 	    default:
+	    var texture = THREE.ImageUtils.loadTexture("assets/materials/" + materialName + ".jpg");
+			texture.wrapS = THREE.RepeatWrapping;
+			texture.wrapT = THREE.RepeatWrapping;
+			console.log(repeat)
+			if(repeat) texture.repeat.set( repeat, repeat );
 	    	material =  new THREE.MeshPhongMaterial({
 		    	color: new THREE.Color("rgb(125,125,125)"),
 		    	ambient: new THREE.Color("rgb(125,125,125)"),
 		    	specular: new THREE.Color("rgb(255,255,255)"),
-		    	map: THREE.ImageUtils.loadTexture("assets/materials/" + materialName + ".jpg"),
-		    	bumpMap: THREE.ImageUtils.loadTexture("assets/materials/" + materialName + ".jpg"),
-		    	bumpScale: 0.3,
-		    	shininess: 11
+		    	map: texture,
+		    	bumpMap: texture,
+		    	bumpScale: 0.1,
+		    	shininess: 16
 	    	});
         	
 	}

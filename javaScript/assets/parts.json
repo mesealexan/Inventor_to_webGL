@@ -1,29 +1,54 @@
 {
   "parts" : [
     {
-      "name": "Part_00"
+      "name": "Part_00",
+      "uv": 5,
+      "material": "aura"
     },
     {
-      "name": "Part_01"
+      "name": "Part_01",
+      "uv": 5,
+      "material": "Default"
     },
     {
-      "name": "Part_02"
+      "name": "Part_02",
+      "uv": 5,
+      "material": "orion"
     },
     {
-      "name": "Part_03"
+      "name": "Part_03",
+      "uv": 5,
+      "material": "Default"
     },
     {
-      "name": "Part_04"
+      "name": "Part_04",
+      "uv": 5,
+      "material": "Default"
     },
     {
-      "name": "Part_05"
+      "name": "Part_05",
+      "uv": 1,
+      "material": "vanga"
     },
     {
-      "name": "Part_06"
+      "name": "Part_06",
+      "uv": 1,
+      "material": "Default"
     },
     {
-      "name": "Part_07"
+      "name": "Part_07",
+      "uv": 1,
+      "material": "Default"
     }
     ],
-  "scale" : 1
+  "text":
+	{
+	   "first_name": "John",
+	   "last_name": "Doe",
+	   "birth": "14.05.1921",
+	   "death": "14.05.1991",
+	   "size": 2.4,
+	   "material": "Text",
+	   "position" : {"x" : 6.072, "y": 38, "z": 51.009}
+	}
 }

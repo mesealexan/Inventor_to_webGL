@@ -9,7 +9,7 @@ var imagesArray = [];
 	imagesArray.push("assets/materials/nero_impala.jpg");
 	imagesArray.push("assets/materials/olive_green.jpg");
 	imagesArray.push("assets/materials/orion.jpg");
-	imagesArray.push("assets/materials/siler_paradise.jpg");
+	imagesArray.push("assets/materials/silver_paradise.jpg");
 	imagesArray.push("assets/materials/twilight_red.jpg");
 	imagesArray.push("assets/materials/vanga.jpg");
 	imagesArray.push("assets/materials/virginia_black.jpg");

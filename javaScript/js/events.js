@@ -31,7 +31,6 @@ document.addEventListener("dragstart", function(event) {
 });
 
 container = document.getElementById( 'webGL' )
-console.log(container)
 var clientX, clientY;
 container.addEventListener("dragover", function(event) {
 	clientX = event.clientX;
@@ -39,6 +38,7 @@ container.addEventListener("dragover", function(event) {
 });
 
 document.addEventListener("drag", function(event) {
+/*
 	if(current_selection && current_selection.alt && clientX){
 		mouse.x = (clientX / window.innerWidth ) * 2 - 1;
 		mouse.y = - (clientY / window.innerHeight ) * 2 + 1;	
@@ -48,7 +48,7 @@ document.addEventListener("drag", function(event) {
 			//intersects[0].object.material.materials[0].ambient =  new THREE.Color("rgb(255,0,0)")
 		}
 
-	}
+	}*/
 });
 
 
@@ -60,7 +60,10 @@ document.addEventListener("dragend", function(event) {
 		raycaster.setFromCamera( mouse, camera );	
 		var intersects = raycaster.intersectObjects( collision_group.children );
 		if(intersects.length){
-			intersects[0].object.material.materials[0] = setMaterials(current_selection.alt);
+			var tile = 1;
+			if(intersects[0].object.UVRepeat) tile = intersects[0].object.UVRepeat;
+			intersects[0].object.material.materials[0] = setMaterials(current_selection.alt,tile );
+
 		}
 	}
 });
