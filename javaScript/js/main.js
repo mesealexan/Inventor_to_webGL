@@ -5,20 +5,21 @@ aspectRatio = width / height;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 
-Init();
 
-function Init() {
+
+function Init(folder) {
 	if(!webgl_detect()) return;	
 	scene = new THREE.Scene();
 	addRenderer();
 	addCamera();
 	addControls();
-
+	path = "assets/" + folder + "/";
+	console.log("Loading: " + path + "parts.JSON")
+	thumb = parseJSON(path + "parts.JSON");
 	collision_group = new THREE.Object3D();
-		scene.add(collision_group);
-
+	scene.add(collision_group);
 	makeTextureCube();
-	loadObjects(thumb);
+	loadObjects(thumb, path);
 	placeText(thumb);
 	addLight();
 	detectOrientationChange();

@@ -27,5 +27,3 @@ function parseJSON(file) {
    		request.send(null);
    	return JSON.parse(request.responseText);
 }
-
-thumb = parseJSON("assets/parts.JSON");

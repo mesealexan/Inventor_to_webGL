@@ -1,4 +1,4 @@
-Started logging messages at Tue Jul 14 12:45:58 2015
+Started logging messages at Tue Jul 14 14:49:28 2015
 Info:    Using UV tolerance 1e-006
 Info:    Using UV tolerance 1e-006
 Info:    HwNlibToTSLib options selected:
@@ -77,4 +77,4 @@ Info:    Curves:                 0 found       0 created       0 failed
 Info:    Surfaces:               0 found       0 created       0 failed
 Info:    Trimmed Surfaces:       0 found       0 created       0 failed
 Info:    Breps:                  1 found       1 created       0 failed
-Finished logging messages at Tue Jul 14 12:45:58 2015
+Finished logging messages at Tue Jul 14 14:49:28 2015
