@@ -3,7 +3,7 @@
 	  {
 		"name": "Part_0",
 		"uv": 1,
-		"material": "vanga"
+		"material": "Default"
 	  },
 	  {
 		"name": "Part_1",
@@ -12,31 +12,6 @@
 	  },
 	  {
 		"name": "Part_2",
-		"uv": 1,
-		"material": "Default"
-	  },
-	  {
-		"name": "Part_3",
-		"uv": 1,
-		"material": "Default"
-	  },
-	  {
-		"name": "Part_4",
-		"uv": 1,
-		"material": "Default"
-	  },
-	  {
-		"name": "Part_5",
-		"uv": 1,
-		"material": "Default"
-	  },
-	  {
-		"name": "Part_6",
-		"uv": 1,
-		"material": "Default"
-	  },
-	  {
-		"name": "Part_7",
 		"uv": 1,
 		"material": "Default"
 	  }

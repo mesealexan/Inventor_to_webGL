@@ -1,4 +1,4 @@
-Started logging messages at Thu Jul 16 11:27:50 2015
+Started logging messages at Thu Jul 16 11:43:12 2015
 Info:    Using UV tolerance 1e-006
 Info:    Using UV tolerance 1e-006
 Info:    HwNlibToTSLib options selected:
@@ -21,155 +21,93 @@ Info:    Found 0 curves in file
 Info:    Found 0 surfaces in file
 Info:    Found 0 trimmed surfaces in file
 Info:    Found 1 B-reps in file
-Info:    Found 31 B-rep faces in file
+Info:    Found 17 B-rep faces in file
 Info:    
 Info:    Using 3D tolerance 1e-006
 Info:    Working on 0
-Info:        Working on 62
+Info:        Working on 37
 Info:            Created 
-Info:        Working on 93
+Info:        Working on 58
+Info:            Created 
+Info:        Working on 6
 Info:            Created 
 Info:        Working on 9
 Info:            Created 
-Info:        Working on 15
+Info:        Working on 89
 Info:            Created 
-Info:        Working on 133
+Info:        Working on 90
 Info:            Created 
-Info:        Working on 135
+Info:        Working on 117
 Info:            Created 
-Info:        Working on 25
+Info:        Working on 119
 Info:            Created 
-Info:        Working on 175
+Info:        Working on 14
 Info:            Created 
-Info:        Working on 37
+Info:        Working on 112
 Info:            Created 
-Info:        Working on 254
-Info:            Created 
-Info:        Working on 303
-Info:            Created 
-Info:        Working on 53
-Info:            Created 
-Info:        Working on 305
-Info:            Created 
-Info:        Working on 253
-Info:            Created 
-Info:        Working on 77
-Info:            Created 
-Info:        Working on 418
-Info:            Created 
-Info:        Working on 378
-Info:            Created 
-Info:        Working on 114
-Info:            Created 
-Info:        Working on 306
-Info:            Created 
-Info:        Working on 165
-Info:            Created 
-Info:        Working on 255
-Info:            Created 
-Info:        Working on 372
-Info:            Created 
-Info:        Working on 375
-Info:            Created 
-Info:        Working on 228
-Info:            Created 
-Info:        Working on 385
-Info:            Created 
-Info:        Working on 299
-Info:            Created 
-Info:        Working on 424
-Info:            Created 
-Info:        Working on 322
-Info:            Created 
-Info:        Working on 443
-Info:            Created 
-Info:        Working on 380
-Info:            Created 
-Info:        Working on 426
-Info:            Created 
-Info:        Working on 425
-Info:            Created 
-Info:        Working on 138
-Info:            Created 
-Info:        Working on 194
-Info:            Created 
-Info:        Working on 74
-Info:            Created 
-Info:        Working on 111
-Info:            Created 
-Info:        Working on 12
+Info:        Working on 113
 Info:            Created 
 Info:        Working on 20
 Info:            Created 
-Info:        Working on 157
+Info:        Working on 143
 Info:            Created 
-Info:        Working on 159
+Info:        Working on 185
 Info:            Created 
-Info:        Working on 31
+Info:        Working on 28
 Info:            Created 
-Info:        Working on 207
+Info:        Working on 183
 Info:            Created 
-Info:        Working on 45
+Info:        Working on 214
 Info:            Created 
-Info:        Working on 288
+Info:        Working on 40
 Info:            Created 
-Info:        Working on 334
+Info:        Working on 215
 Info:            Created 
-Info:        Working on 65
+Info:        Working on 225
 Info:            Created 
-Info:        Working on 96
+Info:        Working on 61
 Info:            Created 
-Info:        Working on 289
-Info:            Created 
-Info:        Working on 400
-Info:            Created 
-Info:        Working on 403
-Info:            Created 
-Info:        Working on 347
-Info:            Created 
-Info:        Working on 141
-Info:            Created 
-Info:        Working on 358
-Info:            Created 
-Info:        Working on 196
-Info:            Created 
-Info:        Working on 414
-Info:            Created 
-Info:        Working on 441
+Info:        Working on 200
 Info:            Created 
 Info:        Working on 162
 Info:            Created 
-Info:        Working on 336
+Info:        Working on 95
 Info:            Created 
-Info:        Working on 226
+Info:        Working on 131
 Info:            Created 
-Info:        Working on 446
+Info:        Working on 204
 Info:            Created 
-Info:        Working on 438
+Info:        Working on 167
 Info:            Created 
-Info:        Working on 298
+Info:        Working on 92
 Info:            Created 
-Info:        Working on 409
+Info:        Working on 192
 Info:            Created 
-Info:        Working on 359
+Info:        Working on 130
 Info:            Created 
-Info:        Working on 431
+Info:        Working on 190
 Info:            Created 
-Info:        Working on 408
+Info:        Working on 169
 Info:            Created 
-Info:        Working on 394
+Info:        Working on 238
 Info:            Created 
-Info:        Working on 433
+Info:        Working on 206
 Info:            Created 
-Info:        Working on 444
+Info:        Working on 244
+Info:            Created 
+Info:        Working on 233
+Info:            Created 
+Info:        Working on 243
+Info:            Created 
+Info:        Working on 237
+Info:            Created 
+Info:        Working on 241
+Info:            Created 
+Info:        Working on 232
 Info:            Created 
 Info:        Created 
-Info:    Working on BRep 1 (0)
-Info:        Using 3D tolerance 0.000152833
-Info:        Using 3D tolerance 1e-006
-Info:        Created BRep 
-Info:    Working on BRep 2 (0)
-Info:        Using 3D tolerance 0.000218332
+Info:    Working on BRep 0
+Info:        Using 3D tolerance 0.000254275
 Info:        Using 3D tolerance 1e-006
 Info:        Created BRep 
 Info:    Finished with 
@@ -178,5 +116,5 @@ Info:    Coordinate Systems      0 found       0 created       0 failed
 Info:    Curves:                 0 found       0 created       0 failed
 Info:    Surfaces:               0 found       0 created       0 failed
 Info:    Trimmed Surfaces:       0 found       0 created       0 failed
-Info:    Breps:                  2 found       2 created       0 failed
-Finished logging messages at Thu Jul 16 11:27:50 2015
+Info:    Breps:                  1 found       1 created       0 failed
+Finished logging messages at Thu Jul 16 11:43:12 2015

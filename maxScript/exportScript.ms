@@ -4,6 +4,21 @@
 -- By alteredq / http://alteredqualia.com
 -- modified version with no UI
 -------------------------------------------------------------------------------------
+fn checkMaterialName nameCheck = 
+(
+	--valid material names
+	names =  #("aura", "fire_red", "indian_impala", "kashmir_gold", "labrador_blue", 
+		"mp_white", "nero_impala", "olive_green", "orion", "silver_paradise", "twilight_red", 
+		"vanga", "virginia_black")
+	
+	for n in names do
+	(
+		if nameCheck == n then return true			
+	)
+	
+	return false
+)
+
 ostream
 
 headerFormat = "\"metadata\":
@@ -1016,20 +1031,6 @@ function ExportScene =
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
-fn checkMaterialName nameCheck = 
-(
-	names =  #("aura", "fire_red", "indian_impala", "kashmir_gold", "labrador_blue", 
-		"mp_white", "nero_impala", "olive_green", "orion", "silver_paradise", "twilight_red", 
-		"vanga", "virginia_black")
-	
-	for n in names do
-	(
-		if nameCheck == n then return true			
-	)
-	
-	return false
-)
-
 fn returnBO_Array = 
 (
 	BO_array = #()
