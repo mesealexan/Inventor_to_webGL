@@ -1031,6 +1031,16 @@ function ExportScene =
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
+fn findText = 
+(
+		for o in objects do 
+		(
+			if o.name == "Text" then return o.position
+		)
+		
+	return undefined
+)
+
 fn returnBO_Array = 
 (
 	BO_array = #()
@@ -1157,6 +1167,7 @@ fn makePartsJSON savePath BO_array =
 	index = 0
 	count = boArray.count
 	UV_size_division = 100
+	textObj = findText()
 	
 	select boArray
 	explodeGroup $
@@ -1193,15 +1204,20 @@ fn makePartsJSON savePath BO_array =
 	)	
 	
 	format  "\n\t],\n" to:output_file
-	format  "\t\"text\": {\n" to:output_file 	
-	format  "\t\t\"first_name\": \"\",\n" to:output_file 	
-	format  "\t\t\"last_name\": \"\",\n" to:output_file 	
-	format  "\t\t\"birth\": \"\",\n" to:output_file 	
-	format  "\t\t\"death\": \"\",\n" to:output_file 	
-	format  "\t\t\"size\": \"\",\n" to:output_file 	
-	format  "\t\t\"material\": \"\",\n" to:output_file 	
-	format  "\t\t\"position\": \"\"\n" to:output_file 	
-	format "\t}\n}" to:output_file 	
+	
+	if (textObj != undefined) then
+	(
+		format  "\t\"text\": {\n" to:output_file 	
+		format  "\t\t\"first_name\": \"\",\n" to:output_file 	
+		format  "\t\t\"last_name\": \"\",\n" to:output_file 	
+		format  "\t\t\"birth\": \"\",\n" to:output_file 	
+		format  "\t\t\"death\": \"\",\n" to:output_file 	
+		format  "\t\t\"size\": \"\",\n" to:output_file 	
+		format  "\t\t\"material\": \"\",\n" to:output_file 	
+		format  "\t\t\"position\": {\"x\":%, \"y\":%, \"z\":%}\n" textObj.x textObj.z textObj.y to:output_file 	
+		format "\t}\n}" to:output_file 	
+	)
+	else format "\n}" to:output_file  	
 		
 	close output_file
 )
