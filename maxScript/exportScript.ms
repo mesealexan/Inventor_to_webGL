@@ -1031,23 +1031,26 @@ function ExportScene =
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
+
 rollout buttons "Inventor to webGL"
-(
-	
-	local h = 20
-	local w = 80
+(	
+	local buttonH = 20
+	local buttonW = 80
+	local windowW = 185
+	local windowH = 60
+	local progBarW = 165
 	
 	button sceneSetupButton "Scene setup"
-		pos:[5,15]
-		height:h width:w 
+	pos:[5,15]
+	height:buttonH width:buttonW
 	
 	button exportButton "Export"
 	pos:[90,15]
-	height:h width:w 		
+	height:buttonH width:buttonW 		
 	
 	progressbar doit_prog color:blue visible:false 
 	pos:[5,30]
-	width:165	
+	width:progBarW
 	
 fn findText = 
 (
@@ -1166,14 +1169,16 @@ fn prepareObj obj =
 (
 	setFineQuality(obj)
 	obj.DisplayRadioVDS = 1
-	--ConvertTo obj Editable_Poly
 )
 
 fn removeMod boArray =
 (
 	for bo in boArray do
 	(
-		for index = bo.modifiers.count to 1 by -1 do deleteModifier bo index	
+		for index = bo.modifiers.count to 1 by -1 do
+		(
+			if classof(bo.modifiers[index]) == Uvwmap or classof(bo.modifiers[index]) == Turn_to_Poly then deleteModifier bo index	
+		)			
 	)
 )
 
@@ -1303,16 +1308,30 @@ fn trimName n =
 	return n
 )
 
-fn export =
+fn toggleProgressBar bool =
 (
-	sceneSetupButton.pos=[5,5]	
-	exportButton.pos=[90,5]	
-	doit_prog.value = 0;
+	if (bool) then 
+	(
+		sceneSetupButton.pos=[5,5]	
+		exportButton.pos=[90,5]	
+		doit_prog.value = 0
+		doit_prog.visible = true
+	)
+	else 
+	(
+		doit_prog.visible = false
+		sceneSetupButton.pos=[5,15]	
+		exportButton.pos=[90,15]	
+	)
+)
+
+fn export =
+(	
 	savePath = getSavepath()	
 	if savePath == undefined then 
 	(
 		MessageBox "Couldn't open file for writing !"
-		doit_prog.visible = false
+		toggleProgressBar false
 		return undefined
 	)
 	
@@ -1323,17 +1342,16 @@ fn export =
 	makePartsJSON savePath BO_array
 	
 	MessageBox "Export successful!"
-	doit_prog.visible = false
-	sceneSetupButton.pos=[5,15]	
-	exportButton.pos=[90,15]	
+	toggleProgressBar false
 )
+
 	on sceneSetupButton pressed do sceneSetup() 
 	on exportButton pressed do 
-	(
-		doit_prog.visible = true
+	(		
+		toggleProgressBar true
 		export()
 	)
 )
 
-createDialog buttons 185 60
+createDialog buttons windowW windowH
 cui.RegisterDialogBar buttons
