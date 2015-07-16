@@ -34,6 +34,7 @@ function setMaterials(materialName, repeat){
 		    	color: new THREE.Color("rgb(125,125,125)"),
 		    	ambient: new THREE.Color("rgb(125,125,125)"),
 		    	specular: new THREE.Color("rgb(255,255,255)"),
+		    	//envMap: textureCube,
 		    	map: texture,
 		    	bumpMap: texture,
 		    	bumpScale: 0.1,

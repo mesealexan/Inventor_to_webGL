@@ -57,10 +57,14 @@ function addLight () {
 	scene.add( spotLight );
 
 	var spotLight2 = new THREE.SpotLight( 0xffffff );
-	spotLight2.position.set( -350, 1611, 300 );
+	spotLight2.position.set( -235, 297, 183 );
 	spotLight2.intensity = 0.2;
-
 	scene.add( spotLight2 );
+
+	var spotLight3 = new THREE.SpotLight( 0xffffff );
+	spotLight3.position.set( 247, 132, 263 );
+	spotLight3.intensity = 0.2;
+	scene.add( spotLight3 );
 }
 
 function addCamera () {	

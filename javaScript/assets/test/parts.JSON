@@ -1,0 +1,53 @@
+{
+	"parts": [
+	  {
+		"name": "Part_0",
+		"uv": 1,
+		"material": "labrador blue pearl"
+	  },
+	  {
+		"name": "Part_1",
+		"uv": 1,
+		"material": "twilight red"
+	  },
+	  {
+		"name": "Part_2",
+		"uv": 1,
+		"material": "Default"
+	  },
+	  {
+		"name": "Part_3",
+		"uv": 1,
+		"material": "Default"
+	  },
+	  {
+		"name": "Part_4",
+		"uv": 1,
+		"material": "virginia black"
+	  },
+	  {
+		"name": "Part_5",
+		"uv": 1,
+		"material": "nero impala"
+	  },
+	  {
+		"name": "Part_6",
+		"uv": 1,
+		"material": "fire red"
+	  },
+	  {
+		"name": "Part_7",
+		"uv": 1,
+		"material": "indian impala"
+	  }
+	],
+	"text": {
+		"first_name": "",
+		"last_name": "",
+		"birth": "",
+		"death": "",
+		"size": "",
+		"material": "",
+		"position": ""
+	}
+}

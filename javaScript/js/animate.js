@@ -1,5 +1,9 @@
 function animate(time) {
+
 	frameID = requestAnimationFrame(animate);
-	renderer.render(scene, camera);
-	TWEEN.update(time);	
+	if(imagesArray.length === 28){
+		renderer.render(scene, camera);
+		TWEEN.update(time);			
+	}
+
 } 
