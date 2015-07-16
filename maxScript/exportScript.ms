@@ -442,7 +442,7 @@ function ExportMaterials zmaterials zcolors =
 
 		Format "\"DbgIndex\" : %,\n" (i-1) to:ostream
 
-		if classof mat != BooleanClass then
+		if classof mat != BooleanClass and classof mat == Standardmaterial then
 		(
 
 			useVertexColors = zcolors[i]
@@ -451,7 +451,7 @@ function ExportMaterials zmaterials zcolors =
 
 			-- colors
 
-			DumpColor mat.diffuse  "colorDiffuse"
+			 DumpColor mat.diffuse  "colorDiffuse"
 			DumpColor mat.ambient  "colorAmbient"
 			DumpColor mat.specular "colorSpecular"
 
@@ -1016,6 +1016,20 @@ function ExportScene =
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
+fn checkMaterialName nameCheck = 
+(
+	names =  #("aura", "fire_red", "indian_impala", "kashmir_gold", "labrador_blue", 
+		"mp_white", "nero_impala", "olive_green", "orion", "silver_paradise", "twilight_red", 
+		"vanga", "virginia_black")
+	
+	for n in names do
+	(
+		if nameCheck == n then return true			
+	)
+	
+	return false
+)
+
 fn returnBO_Array = 
 (
 	BO_array = #()
@@ -1155,7 +1169,11 @@ fn makePartsJSON savePath BO_array =
 		format "\t\t\"uv\": %,\n" ((obj.modifiers[uvwmap].length / UV_size_division) as integer) to:output_file 	
 		
 		matName = "Default"
-		if (obj.material != undefined) do matName = obj.material.name 
+		if (obj.material != undefined) do 
+		(
+			matName = obj.material.name 
+			if (checkMaterialName matName != true) then matName = "Default"
+		)
 		format "\t\t\"material\": \"%\"" matName to:output_file 
 		
 		format "\n\t  }" to:output_file 		

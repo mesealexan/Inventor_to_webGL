@@ -3,47 +3,42 @@
 	  {
 		"name": "Part_0",
 		"uv": 1,
-		"material": "Miscellaneous Default"
+		"material": "vanga"
 	  },
 	  {
 		"name": "Part_1",
 		"uv": 1,
-		"material": "Miscellaneous Default"
+		"material": "Default"
 	  },
 	  {
 		"name": "Part_2",
 		"uv": 1,
-		"material": "Miscellaneous Default"
+		"material": "Default"
 	  },
 	  {
 		"name": "Part_3",
 		"uv": 1,
-		"material": "Miscellaneous Default"
+		"material": "Default"
 	  },
 	  {
 		"name": "Part_4",
 		"uv": 1,
-		"material": "Miscellaneous Default"
+		"material": "Default"
 	  },
 	  {
 		"name": "Part_5",
 		"uv": 1,
-		"material": "Miscellaneous Default"
+		"material": "Default"
 	  },
 	  {
 		"name": "Part_6",
 		"uv": 1,
-		"material": "Miscellaneous Default"
+		"material": "Default"
 	  },
 	  {
 		"name": "Part_7",
 		"uv": 1,
-		"material": "Miscellaneous Default"
-	  },
-	  {
-		"name": "Part_8",
-		"uv": 1,
-		"material": "Wall Paint/Glossy Blue - Wall Paint - Glossy"
+		"material": "Default"
 	  }
 	],
 	"text": {
