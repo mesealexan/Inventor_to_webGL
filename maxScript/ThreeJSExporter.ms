@@ -996,31 +996,3 @@ function ExportScene =
 	Format footerFormat to:ostream
 
 )
-
--------------------------------------------------------------------------------------
--- Open and prepare a file handle for writing
-
-function GetSaveFileStream =
-(
-	zname = getFilenameFile maxFileName
-	zname += ".js"
-
-	fname = GetSaveFileName filename:zname types:"JavaScript file (*.js)|*.js|All Files(*.*)|*.*|"
-	if fname == undefined then
-	(
-
-		return undefined
-
-	)
-
-	ostream = CreateFile fname
-	if ostream == undefined then
-	(
-
-		MessageBox "Couldn't open file for writing !"
-		return undefined
-
-	)
-
-	return ostream
-)
