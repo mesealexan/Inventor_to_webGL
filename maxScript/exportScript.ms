@@ -1031,6 +1031,24 @@ function ExportScene =
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
+rollout buttons "Inventor to webGL"
+(
+	
+	local h = 20
+	local w = 80
+	
+	button sceneSetupButton "Scene setup"
+		pos:[5,15]
+		height:h width:w 
+	
+	button exportButton "Export"
+	pos:[90,15]
+	height:h width:w 		
+	
+	progressbar doit_prog color:blue visible:false 
+	pos:[5,30]
+	width:165	
+	
 fn findText = 
 (
 		for o in objects do 
@@ -1151,13 +1169,19 @@ fn prepareObj obj =
 	--ConvertTo obj Editable_Poly
 )
 
-fn removeMod obj =
+fn removeMod boArray =
 (
--- 	for i = 1 to obj.modifiers.count do 
--- 		if classof(obj.modifiers[i]) = Turn_to_Poly do
--- 			deleteModifier obj i
-	for index = obj.modifiers.count to 1 by -1 do deleteModifier obj index
-	
+	for bo in boArray do
+	(
+		for index = bo.modifiers.count to 1 by -1 do deleteModifier bo index	
+	)
+)
+
+fn explodeGrp boArray =
+(
+	select boArray
+	explodeGroup $
+	max select none
 )
 
 fn makePartsJSON savePath BO_array = 
@@ -1169,8 +1193,7 @@ fn makePartsJSON savePath BO_array =
 	UV_size_division = 100
 	textObj = findText()
 	
-	select boArray
-	explodeGroup $
+	explodeGrp boArray
 	
 	format  "{\n\t\"parts\": [\n" to:output_file 	
 	
@@ -1193,33 +1216,34 @@ fn makePartsJSON savePath BO_array =
 		select obj
 		ostream = CreateFile (savePath + "\\" +  "Part_" + (index as string) + ".js")
 		
-		--if (isGroupHead obj) then explodeGroup obj
 		ExportScene()
-		close ostream		
-		--max select none
+		close ostream			
 		
 		index += 1
-		if (index < count) do format ",\n" to:output_file 			
-		removeMod obj
+		if (index < count) do format ",\n" to:output_file 	
+		
+		doit_prog.value = 100 * index / boArray.count
 	)	
 	
-	format  "\n\t],\n" to:output_file
+	format  "\n\t]" to:output_file
 	
 	if (textObj != undefined) then
 	(
-		format  "\t\"text\": {\n" to:output_file 	
-		format  "\t\t\"first_name\": \"\",\n" to:output_file 	
-		format  "\t\t\"last_name\": \"\",\n" to:output_file 	
-		format  "\t\t\"birth\": \"\",\n" to:output_file 	
-		format  "\t\t\"death\": \"\",\n" to:output_file 	
-		format  "\t\t\"size\": \"\",\n" to:output_file 	
-		format  "\t\t\"material\": \"\",\n" to:output_file 	
-		format  "\t\t\"position\": {\"x\":%, \"y\":%, \"z\":%}\n" textObj.x textObj.z textObj.y to:output_file 	
+		format  ",\n\t\"text\": {\n" to:output_file 	
+		format  "\t\t\"first_name\": \".\",\n" to:output_file 	
+		format  "\t\t\"last_name\": \".\",\n" to:output_file 	
+		format  "\t\t\"birth\": \".\",\n" to:output_file 	
+		format  "\t\t\"death\": \".\",\n" to:output_file 	
+		format  "\t\t\"size\": 2.5,\n" to:output_file 	
+		format  "\t\t\"material\": \"Text\",\n" to:output_file 	
+		format  "\t\t\"position\": {\"x\": %, \"y\": %, \"z\": %}\n" textObj.x textObj.y textObj.z to:output_file 	
 		format "\t}\n}" to:output_file 	
 	)
 	else format "\n}" to:output_file  	
 		
 	close output_file
+			
+	removeMod boArray
 )
 
 fn round num = 
@@ -1228,18 +1252,15 @@ fn round num =
 	return floor((num + 99) / 100) * 100;
 )
 
-fn addUVW prepareForExport BO_array =
+fn addUVW prepareForExport boArray =
 (
 	nameNum = 0;
-	boArray = BO_array
 	
 	for obj in boArray do 
 	(		
 		m = uvwmap() 
 		m.maptype = 4		
-		size = 100
-		
-		ed = edit_poly()
+		size = 100		
 		tu = turn_to_poly()
 		
 		if(prepareForExport) do
@@ -1252,9 +1273,8 @@ fn addUVW prepareForExport BO_array =
 			
 		m.length = m.width = m.height = size
 
-		addmodifier obj m			
-		--addmodifier obj ed	
-		addmodifier obj tu	
+		addmodifier obj m		
+		if(prepareForExport) do addmodifier obj tu	
 			
 		obj.name = "Part_" + nameNum as string
 		nameNum += 1
@@ -1264,7 +1284,12 @@ fn addUVW prepareForExport BO_array =
 fn sceneSetup = 
 (
 	--just set up the scene, no custom UVW size, default to 100 sided cube
-	addUVW(false)
+	boArray = returnBO_Array()	
+	explodeGrp boArray
+	removeMod boArray	
+	addUVW false boArray	
+	
+	MessageBox "Scene setup successful!"
 )
 
 fn trimName n = 
@@ -1280,58 +1305,35 @@ fn trimName n =
 
 fn export =
 (
+	sceneSetupButton.pos=[5,5]	
+	exportButton.pos=[90,5]	
+	doit_prog.value = 0;
 	savePath = getSavepath()	
 	if savePath == undefined then 
 	(
 		MessageBox "Couldn't open file for writing !"
+		doit_prog.visible = false
 		return undefined
 	)
 	
 	BO_array = returnBO_Array()
 	
+	removeMod BO_array	
 	addUVW true BO_array
 	makePartsJSON savePath BO_array
 	
-	MessageBox "Exporting successful!"
-	
-	--filein "ThreeJSExporter.ms"	
-	
---	nameNum = 0
--- 	for mat in scenematerials do 
--- 	(
--- 		obj_list = #()
--- 		for obj in Geometry do
--- 		(
--- 			if obj.material == mat do  
--- 			append obj_list obj 
--- 		)
--- 		select obj_list		
--- 		--ostream = CreateFile (savePath + "\\" +  trimName(mat.name) + ".js")
--- 		ostream = CreateFile (savePath + "\\" +  "Part_" + (nameNum as string) + ".js")
--- 		nameNum += 1
--- 		ExportScene()
--- 		close ostream
--- 	)	
-
-	
+	MessageBox "Export successful!"
+	doit_prog.visible = false
+	sceneSetupButton.pos=[5,15]	
+	exportButton.pos=[90,15]	
 )
-
-rollout buttons "Inventor to webGL"
-(
-	local h = 20
-	local w = 80
-	
-	button sceneSetupButton "Scene setup"
-		pos:[5,5]
-		height:h width:w 
-	
-		button exportButton "Export"
-		pos:[90,5]
-		height:h width:w 	
-	
 	on sceneSetupButton pressed do sceneSetup() 
-	on exportButton pressed do export()
+	on exportButton pressed do 
+	(
+		doit_prog.visible = true
+		export()
+	)
 )
 
-createDialog buttons 185 35
+createDialog buttons 185 60
 cui.RegisterDialogBar buttons
